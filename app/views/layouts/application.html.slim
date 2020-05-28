@@ -10,5 +10,7 @@ html
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       .navbar-brand RaiseLesson03
-    .container
+    .container.bg-success.text-white
+      - if flash.notice.present?
+        .alert.alert-sucess = flash.notice
     = yield
