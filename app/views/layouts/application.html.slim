@@ -8,9 +8,9 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-primary
-      .navbar-brand RaiseLesson03
-    .container.bg-success.text-white
+    header.app-title.navbar.navbar-expand-md.navbar-light.bg-primary
+      .navbar-brand.text-white RaiseLesson03
+    main.container
       - if flash.notice.present?
-        .alert.alert-sucess = flash.notice
-    = yield
+        .alert.alert-success = flash.notice
+      = yield

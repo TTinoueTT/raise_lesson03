@@ -1,9 +1,8 @@
 
 / p Find me in app/views/tasks/edit.html.slim
-div.container
-  h1 タスクの編集
+h1 タスクの編集
 
-  .nav.justify-content-end
-    = link_to '一覧', tasks_path, class: 'nav-link'
+.nav.justify-content-end
+  = link_to '一覧', tasks_path, class: 'nav-link'
 
-  = render partial: 'form',locals: { task: @task }
+= render partial: 'form',locals: { task: @task }
