@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim-rails' #Slim templates generator for Rails 3+
 gem 'html2slim'  #HTML to Slim converter
 gem 'bootstrap'
+
+# gem 'websocket-extensions', " > = 0.1.5 "
