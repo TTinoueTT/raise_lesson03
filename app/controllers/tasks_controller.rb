@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
@@ -9,19 +11,20 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    #コントローラのインスタンス変数はViewからも見ることができる
-    #アクションからビューに受け渡したいデータをインスタンス変数に入れることができる(アクションの役割)
-    #ブラウザに返す画面を指定できるが省略もできる、省略の場合はアクション名に対応したViewを返す
+    # Controller instance variables can also be viewed from the View
+    # You can put the data you want to pass from an Action to a View in an instance variable(The Role of Action)
+    # You can specify the screen to be returned to the browser, but you can also omit it.
+    # If omitted, it returns the view corresponding to the action
   end
 
   def create
-    @task = Task.new(task_params) #task_paramsで安全化された値を取得してTaskオブジェクトを作成
-    if @task.save #taskインスタンスが保存されれば↓
-      redirect_to tasks_url, notice: "タスク「#{@task.name}」を登録しました。"
-    #データを登録した後に登録時にいたページ以外ならredirectで指定URLに飛ぶ
-    #何も指定しなければrenderで元のページにもどる
+    @task = Task.new(task_params) # Create a Task object by retrieving the secured value in task_params
+    if @task.save # Once the task instance is saved,
+      redirect_to tasks, notice: "タスク「#{@task.name}」を登録しました。"
+    # if it's not the page you were on when you registered, you can redirect to the specified URL
+    # If nothing is specified, render will return to the original page (new)
     else
-      render:new
+      render :new
     end
   end
 
@@ -30,9 +33,12 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
-    task.update!(task_params)
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を更新しました。"
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
