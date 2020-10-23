@@ -4,12 +4,12 @@ class Task < ApplicationRecord
   validate :validate_name_not_including_comma
 
   private
+
   def validate_name_not_including_comma
-    errors.add( :name, 'にカンマを含めることはできません') if name&.include?(',')
+    errors.add(:name, 'にカンマを含めることはできません') if name&.include?(',')
   end
 
   # def set_nameless_name
   #   self.name = '名前なし' if name.blank?
   # end
-
 end
