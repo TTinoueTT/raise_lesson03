@@ -3,6 +3,10 @@ class Task < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
   validate :validate_name_not_including_comma
 
+  belongs_to :User
+  # このクラスは belongs_to で指定したクラスに従属している
+  # 従属先のクラスのidを利用したレコードを複数登録可能
+
   private
 
   def validate_name_not_including_comma

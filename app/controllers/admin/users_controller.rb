@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_admin
+
   def index
     @users = User.all
   end
@@ -43,5 +45,11 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
+  end
+
+  def require_admin
+    redirect_to root_path unless current_user.admin? # current_userが管理者権限でないなら、root_pathに転送
+    # 簡単な例のため、root_pathに転送する処理を行なっているが、これを行うことで、usersコントローラのアクションが存在していることを知らしめてしまう
+    # 管理機能の存在を隠すのであれば、HTTPステータスコード404を返すコードを書く方が良い
   end
 end
