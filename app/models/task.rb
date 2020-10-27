@@ -6,7 +6,9 @@ class Task < ApplicationRecord
   belongs_to :user
   # このクラスは belongs_to で指定したクラスに従属している
   # 従属先のクラスのidを利用したレコードを複数登録可能
+  scope :recent, -> { order(created_at: :desc) }
 
+  # Ex:- scope :active, -> {where(:active => true)}
   private
 
   def validate_name_not_including_comma
