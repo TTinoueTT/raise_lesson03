@@ -3,7 +3,7 @@
 class TasksController < ApplicationController
   def index
     # @tasks = Task.all
-    @tasks = current_user.tasks # Userオブジェクトに紐づくタスクオブジェクト一覧を取得
+    @tasks = current_user.tasks.order(created_at: :desc) # Userオブジェクトに紐づくタスクオブジェクト一覧を取得
   end
 
   def show
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     # @task = Task.new(task_params.merge(user_id: current_user.id)) # Create a Task object by retrieving the secured value in task_params
     @task = current_user.tasks.new(task_params) # Userオブジェクトに紐づくタスクオブジェクトを生成
     if @task.save # Once the task instance is saved,
-      redirect_to tasks, notice: "タスク「#{@task.name}」を登録しました。"
+      redirect_to tasks_url, notice: "タスク「#{@task.name}」を登録しました。"
     # if it's not the page you were on when you registered, you can redirect to the specified URL
     # If nothing is specified, render will return to the original page (new)
     else
