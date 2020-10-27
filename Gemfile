@@ -59,4 +59,5 @@ gem 'slim-rails' # Slim templates generator for Rails 3+
 
 # gem 'parser', '~> 2.7', '>= 2.7.1.4'
 # gem 'reek', '~> 6.0', '>= 6.0.1'
+gem 'rinku', '~> 2.0', '>= 2.0.6'
 gem 'rubocop', require: false
