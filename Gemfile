@@ -62,3 +62,5 @@ gem 'slim-rails' # Slim templates generator for Rails 3+
 gem 'rinku', '~> 2.0', '>= 2.0.6'
 gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
 gem 'rubocop', require: false
+
+gem 'factory_bot_rails', '~> 6.1'
