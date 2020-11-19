@@ -36,6 +36,7 @@ class TasksController < ApplicationController
     end
 
     if @task.save # Once the task instance is saved,
+      TaskMailer.creation_email(@task).deliver_now
       logger.debug "task: #{@task.attributes.inspect}"
       redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
     # if it's not the page you were on when you registered, you can redirect to the specified URL
