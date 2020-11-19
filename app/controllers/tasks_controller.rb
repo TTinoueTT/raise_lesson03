@@ -5,8 +5,9 @@ class TasksController < ApplicationController
 
   def index
     # @tasks = Task.all
-    @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).recent # Userオブジェクトに紐づくタスクオブジェクト一覧を取得
+    @q = current_user.tasks.ransack(params[:q]) # ransackでタスク情報を取得するようにする
+    # @tasks = current_user.tasks.recent # Userオブジェクトに紐づくタスクオブジェクト一覧を取得
+    @tasks = @q.result(distinct: true) # 検索結果のデータを取得
   end
 
   def show
