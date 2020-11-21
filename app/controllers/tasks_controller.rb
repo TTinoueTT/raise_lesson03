@@ -8,6 +8,13 @@ class TasksController < ApplicationController
     @q = current_user.tasks.ransack(params[:q]) # ransackでタスク情報を取得するようにする
     # @tasks = current_user.tasks.recent # Userオブジェクトに紐づくタスクオブジェクト一覧を取得
     @tasks = @q.result(distinct: true) # 検索結果のデータを取得
+    respond_to do |format| # indexに接続した場合、HTMLとして
+      format.html
+      format.csv do
+        send_data @tasks.generate_csv,
+                  filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
+      end
+    end
   end
 
   def show
