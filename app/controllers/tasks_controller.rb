@@ -17,6 +17,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def import
+    current_user.tasks.import(params[:file])
+    redirect_to tasks_url, notice: 'CSVの一括登録を行いました'
+  end
+
   def show
     # @task = Task.find(params[:id]) # この状態だと、ユーザを特定しないため、全ユーザの指定idのタスクを取得する(findは取得の一番最初の値を採用している)
   end
