@@ -22,6 +22,21 @@ class Task < ApplicationRecord
     end
   end
 
+  # csv_text = <<~CSV_TEXT
+  #   name,description
+  #   最初のタスク,最初のタスク
+  # CSV_TEXT
+
+  # IO.write 'sample.csv', csv_text
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      task = new
+      task.attributes = row.to_h.slice(*csv_attributes)
+      task.save!
+    end
+  end
+
   # Ex:- scope :active, -> {where(:active => true)}
   private
 
