@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     # @tasks = Task.all
     @q = current_user.tasks.ransack(params[:q]) # ransackでタスク情報を取得するようにする
     # @tasks = current_user.tasks.recent # Userオブジェクトに紐づくタスクオブジェクト一覧を取得
-    @tasks = @q.result(distinct: true) # 検索結果のデータを取得
+    @tasks = @q.result(distinct: true).page(params[:page]) # 検索結果のデータを取得
     respond_to do |format| # indexに接続した場合、HTMLとして
       format.html
       format.csv do
