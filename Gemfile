@@ -66,6 +66,7 @@ gem 'slim-rails' # Slim templates generator for Rails 3+
 # gem 'reek', '~> 6.0', '>= 6.0.1'
 
 gem 'factory_bot_rails', '~> 6.1'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'ransack', '~> 2.3', '>= 2.3.2'
 gem 'rinku', '~> 2.0', '>= 2.0.6'
 gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
